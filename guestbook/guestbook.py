@@ -26,6 +26,21 @@ def guestbook_key(guestbook_name=DEFAULT_GUESTBOOK_NAME):
     """
     return ndb.Key('Guestbook', guestbook_name)
 
+# Refactor get url link by user
+
+
+def get_user_url(uri):
+    if users.get_current_user():
+        url = users.create_logout_url(uri)
+        url_linktext = 'Logout'
+    else:
+        url = users.create_login_url(uri)
+        url_linktext = 'Login'
+    return {
+        'url': url,
+        'url_linktext': url_linktext
+    }
+
 
 class Greeting(ndb.Model):
     """
@@ -67,18 +82,13 @@ class MainPage(webapp2.RequestHandler):
             ancestor=guestbook_key(guestbook_name)).order(-Greeting.date)
         greetings = greetings_query.fetch(10)
 
-        if users.get_current_user():
-            url = users.create_logout_url(self.request.uri)
-            url_linktext = 'Logout'
-        else:
-            url = users.create_login_url(self.request.uri)
-            url_linktext = 'Login'
+        user_url = get_user_url(self.request.uri)
 
         template_values = {
             'greetings': greetings,
             'guestbook_name': urllib.quote_plus(guestbook_name),
-            'url': url,
-            'url_linktext': url_linktext,
+            'url': user_url['url'],
+            'url_linktext': user_url['url_linktext'],
         }
 
         template = JINJA_ENVIRONMENT.get_template('index.html')
