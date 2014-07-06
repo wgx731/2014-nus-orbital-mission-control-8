@@ -20,11 +20,19 @@ class GetUserUrlTestCase(unittest.TestCase):
             'url': 'https://www.google.com/accounts/Login?continue=http%3A//testbed.example.com/',
             'url_linktext': 'Login'
         }
+        self.normal_user_logout_url = {
+            'url': 'https://www.google.com/accounts/Logout?continue=http%3A//testbed.example.com/',
+            'url_linktext': 'Logout'
+        }
+        self.admin_user_logout_url = {
+            'url': 'https://www.google.com/accounts/Logout?continue=http%3A//testbed.example.com/',
+            'url_linktext': 'Logout'
+        }
 
     def tearDown(self):
         self.testbed.deactivate()
 
-    def setCurrentUser(self, email, user_id, is_admin=False):
+    def set_current_user(self, email, user_id, is_admin=False):
         email_to_set = email or ''
         id_to_set = user_id or ''
         admin_to_set = '1' if is_admin else '0'
@@ -32,10 +40,23 @@ class GetUserUrlTestCase(unittest.TestCase):
         self.testbed.setup_env(USER_ID=id_to_set, overwrite=True)
         self.testbed.setup_env(USER_IS_ADMIN=admin_to_set, overwrite=True)
 
-    def testNoLoginUser(self):
-        self.setCurrentUser(None, None)
+    def test_no_login_user(self):
+        self.set_current_user(None, None)
         result = get_user_url('/')
         assert_that(result, equal_to(self.user_login_url))
         assert_that(result['url_linktext'], is_not('Logout'))
 
-    # TODO: test login with a user
+    def test_normal_login_user(self):
+        self.set_current_user('test@test.com', 'test')
+        result = get_user_url('/')
+        assert_that(result, equal_to(self.normal_user_logout_url))
+        assert_that(result['url_linktext'], is_not('Login'))
+
+    def test_admin_login_user(self):
+        self.set_current_user('admin@test.com', 'admin', True)
+        result = get_user_url('/')
+        assert_that(result, equal_to(self.admin_user_logout_url))
+        assert_that(result['url_linktext'], is_not('Login'))
+
+if __name__ == '__main__':
+    unittest.main()
