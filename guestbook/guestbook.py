@@ -15,17 +15,36 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 DEFAULT_GUESTBOOK_NAME = 'default_guestbook'
 
 
-# We set a parent key on the 'Greetings' to ensure that they are all in the same
-# entity group. Queries across the single entity group will be consistent.
+# We set a parent key on the 'Greetings' to ensure that they are all in the
+# same entity group.
+# Queries across the single entity group will be consistent.
 # However, the write rate should be limited to ~1/second.
 
 def guestbook_key(guestbook_name=DEFAULT_GUESTBOOK_NAME):
-    """Constructs a Datastore key for a Guestbook entity with guestbook_name."""
+    """
+    Constructs a Datastore key for a Guestbook entity with guestbook_name.
+    """
     return ndb.Key('Guestbook', guestbook_name)
 
 
 class Greeting(ndb.Model):
-    """Models an individual Guestbook entry with author, content, and date."""
+    """
+    Models an individual Guestbook entry with author, content, and date.
+
+    You can create a Greeting:
+    >>> greeting = Greeting(parent=guestbook_key(), content='test content')
+    >>> greeting
+    Greeting(key=Key('Guestbook', 'default_guestbook', 'Greeting', None), content='test content')
+    >>> created_key = greeting.put()
+
+    You can query to select the greeting:
+    >>> greetings_query = Greeting.query(ancestor=guestbook_key())
+    >>> list(greetings_query.fetch(10)) # doctest: +ELLIPSIS
+    [Greeting(key=Key('Guestbook', 'default_guestbook', ...)]
+
+
+    TODO: add test for modify
+    """
     author = ndb.UserProperty()
     content = ndb.StringProperty(indexed=False)
     date = ndb.DateTimeProperty(auto_now_add=True)
