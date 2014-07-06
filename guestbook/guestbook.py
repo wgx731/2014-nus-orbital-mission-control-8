@@ -42,8 +42,16 @@ class Greeting(ndb.Model):
     >>> list(greetings_query.fetch(10)) # doctest: +ELLIPSIS
     [Greeting(key=Key('Guestbook', 'default_guestbook', ...)]
 
+    To modify a greeting, change one of its properties and ``put()`` it again.
+    >>> greeting_2 = _[0]
+    >>> greeting_2.content = 'test 2'
+    >>> created_key_2 = greeting_2.put()
+    >>> greeting_2.content
+    u'test 2'
 
-    TODO: add test for modify
+    Verify that the key for the greeting doesn't change.
+    >>> bool(created_key == created_key_2)
+    True
     """
     author = ndb.UserProperty()
     content = ndb.StringProperty(indexed=False)
