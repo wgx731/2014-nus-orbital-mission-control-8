@@ -1,8 +1,10 @@
+#!/usr/bin/env python
 import os
 import urllib
 
 from google.appengine.api import users
 from google.appengine.ext import ndb
+from google.appengine.ext.webapp import util
 
 import jinja2
 import webapp2
@@ -116,7 +118,19 @@ class Guestbook(webapp2.RequestHandler):
         self.redirect('/?' + urllib.urlencode(query_params))
 
 
-application = webapp2.WSGIApplication([
-    ('/', MainPage),
-    ('/sign', Guestbook),
-], debug=True)
+def make_application(debug_to_set=True):
+    return webapp2.WSGIApplication([
+        ('/', MainPage),
+        ('/sign', Guestbook),
+    ], debug=debug_to_set)
+
+application = make_application(True)
+
+
+def main():
+    application = make_application()
+    util.run_wsgi_app(application)
+
+
+if __name__ == '__main__':
+    main()
