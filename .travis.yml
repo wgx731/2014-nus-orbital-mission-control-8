@@ -12,6 +12,7 @@ install:
     - "wget https://storage.googleapis.com/appengine-sdks/featured/google_appengine_1.9.6.zip"
     - "sudo unzip -q google_appengine_1.9.6.zip -d /usr/local"
     - 'export PATH="/usr/local/google_appengine":$PATH'
+    - 'export SERVER_RUNNING="True"'
     - "dev_appserver.py -h"
     - "pip install -r requirements.txt"
 
@@ -22,5 +23,6 @@ before_script:
 script:
     - "nosetests --with-doctest --cover-html --cover-erase --with-coverage --cover-package=guestbook.guestbook --with-gae --without-sandbox -v"
     - "py.test --doctest-modules --cov-report term --cov-report html --cov guestbook.py --with-gae --gae-path='/usr/local/google_appengine' -v"
+    - "dev_appserver.py --clear_datastore=yes --port=4567 ."
     - "behave -v"
     - "echo DONE!"
