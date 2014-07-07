@@ -3,6 +3,10 @@
 # STEPS:
 # ----------------------------------------------------------------------------
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
 from behave import given, when, then
 from hamcrest import assert_that, contains_string
 
@@ -13,8 +17,8 @@ HOME = "http://localhost:4567"
 def step_user_has_sign_out(context):
     context.browser.get(HOME)
     try:
-        sign_out_link = context.browser.find_element_by_link_text('Logout')
-        sign_out_link.click()
+        logout_link = context.browser.find_element_by_link_text('Logout')
+        logout_link.click()
     except NoSuchElementException:
         pass
 
@@ -41,6 +45,19 @@ def setp_sign_content(context, content):
     elm.send_keys(content)
     button = context.browser.find_element_by_id("submit")
     button.click()
+
+
+@when('I login as "{user}"')
+def setp_login_as(context, user):
+    login_link = context.browser.find_element_by_link_text('Login')
+    login_link.click()
+    elm = context.browser.find_element_by_name("email")
+    elm.clear()
+    elm.send_keys(user)
+    elm = context.browser.find_element_by_id("submit-login")
+    elm.click()
+    wait = WebDriverWait(context.browser, 5)
+    wait.until(EC.presence_of_element_located((By.NAME, 'content')))
 
 
 @then('I should see "{content}" signed by "{user}"')
