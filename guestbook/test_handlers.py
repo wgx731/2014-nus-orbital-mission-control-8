@@ -20,8 +20,8 @@ class HandlerTestCase(unittest.TestCase):
         self.html_content_type = "text/html"
         self.login_string = 'Login'
         self.logout_string = 'Logout'
-        self.submit_button = '<div><input type="submit" value="Sign Guestbook"></div>'
-        self.switch_button = '<input type="submit" value="switch">'
+        self.submit_button = '<input id="submit" type="submit" value="Sign Guestbook">'
+        self.switch_button = '<input id="switch" type="submit" value="switch">'
         self.guest_name_label = 'Guestbook name:'
         self.css_link = '<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />'
         self.post_params = {'content': 'test post'}
