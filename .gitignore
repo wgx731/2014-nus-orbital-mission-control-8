@@ -88,3 +88,4 @@ nosetests.xml
 env
 cover
 htmlcov
+!.travis.yml
