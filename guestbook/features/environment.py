@@ -1,4 +1,5 @@
 import os
+import sys
 import signal
 import subprocess
 
@@ -17,11 +18,13 @@ def before_all(context):
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT)
     line = context.app_engine_proc.stdout.readline()
-    while 'Starting admin server' not in line:
-        print line
-        if line == '':
-            break
+    count = 75
+    while ('Starting admin server' not in line) and (count > 0):
+        sys.stdout.write(line)
+        sys.stdout.write("count: %d" % count)
+        sys.stdout.flush()
         line = context.app_engine_proc.stdout.readline()
+        count = count - 1
 
 
 def after_all(context):
