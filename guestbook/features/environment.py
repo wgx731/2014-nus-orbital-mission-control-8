@@ -18,6 +18,9 @@ def before_all(context):
         stderr=subprocess.STDOUT)
     line = context.app_engine_proc.stdout.readline()
     while 'Starting admin server' not in line:
+        print line
+        if line == '':
+            break
         line = context.app_engine_proc.stdout.readline()
 
 
