@@ -1,7 +1,7 @@
 orbital-14-testing
 ==================================
 
-[![Build Status](https://travis-ci.org/wgx731/2014-nus-orbital-mission-control-8.svg?branch=future)](https://travis-ci.org/wgx731/2014-nus-orbital-mission-control-8) [![Coverage Status](https://img.shields.io/coveralls/wgx731/2014-nus-orbital-mission-control-8.svg)](https://coveralls.io/r/wgx731/2014-nus-orbital-mission-control-8?branch=future)
+[![Build Status](http://img.shields.io/travis/wgx731/2014-nus-orbital-mission-control-8/future.svg?style=flat)](https://travis-ci.org/wgx731/2014-nus-orbital-mission-control-8) [![Coverage Status](http://img.shields.io/coveralls/wgx731/2014-nus-orbital-mission-control-8/future.svg?style=flat)](https://coveralls.io/r/wgx731/2014-nus-orbital-mission-control-8?branch=future)
 
 Tutorial for the [NUS Orbital 2014] Mission Control #8 - Orbital Testing and Beyond session
 
