@@ -21,7 +21,7 @@ def before_all(context):
     count = 75
     while ('Starting admin server' not in line) and (count > 0):
         sys.stdout.write(line)
-        sys.stdout.write("count: %d" % count)
+        sys.stdout.write("count: %d\n" % count)
         sys.stdout.flush()
         line = context.app_engine_proc.stdout.readline()
         count = count - 1

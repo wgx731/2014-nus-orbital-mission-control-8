@@ -22,5 +22,5 @@ before_script:
 script:
     - "nosetests --with-doctest --cover-html --cover-erase --with-coverage --cover-package=guestbook.guestbook --with-gae --without-sandbox -v"
     - "py.test --doctest-modules --cov-report term --cov-report html --cov guestbook.py --with-gae --gae-path='/usr/local/google_appengine' -v"
-    - "behave"
+    - "behave -v"
     - "echo DONE!"
