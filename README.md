@@ -1,6 +1,9 @@
 orbital-14-testing
 ==================================
 
+[![Build Status](https://travis-ci.org/wgx731/2014-nus-orbital-mission-control-8.svg?branch=future)](https://travis-ci.org/wgx731/2014-nus-orbital-mission-control-8)
+
+
 Tutorial for the [NUS Orbital 2014] Mission Control #8 - Orbital Testing and Beyond session
 
 + [Link to Reference Note](http://goo.gl/SYu84H)
@@ -10,7 +13,41 @@ Tutorial for the [NUS Orbital 2014] Mission Control #8 - Orbital Testing and Bey
 ## Content
 
 <pre>
-    Stay tuned ...
+.
+├── guestbook
+│   ├── app.yaml
+│   ├── features
+│   │   ├── environment.py
+│   │   ├── guestbook.feature
+│   │   ├── __init__.py
+│   │   └── steps
+│   │       ├── __init__.py
+│   │       └── steps.py
+│   ├── guestbook.py
+│   ├── index.html
+│   ├── index.yaml
+│   ├── __init__.py
+│   ├── stylesheets
+│   │   └── main.css
+│   ├── test_get_user_url.py
+│   └── test_handlers.py
+├── LICENSE
+├── README.md
+├── requirements.txt
+└── test-examples
+├── behave-example
+│   ├── features
+│   │   ├── behave-test.feature
+│   │   ├── __init__.py
+│   │   └── steps
+│   │       ├── __init__.py
+│   │       └── steps.py
+│   └── __init__.py
+├── doctest_example.py
+├── __init__.py
+└── test_unitest_example.py
+
+8 directories, 24 files
 </pre>
 
 ## Authors
