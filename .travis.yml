@@ -14,6 +14,7 @@ install:
     - 'export SERVER_RUNNING="True"'
     - "dev_appserver.py -h"
     - "pip install -r requirements.txt"
+    - "pip install python-coveralls"
 
 before_script:
     - "cd guestbook"
@@ -26,3 +27,6 @@ script:
     - "sleep 3"
     - "behave -v"
     - "echo DONE!"
+
+after_success:
+    - "coveralls"
