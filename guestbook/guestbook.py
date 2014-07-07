@@ -4,7 +4,6 @@ import urllib
 
 from google.appengine.api import users
 from google.appengine.ext import ndb
-from google.appengine.ext.webapp import util
 
 import jinja2
 import webapp2
@@ -125,12 +124,3 @@ def make_application(debug_to_set=True):
     ], debug=debug_to_set)
 
 application = make_application(True)
-
-
-def main():
-    application = make_application()
-    util.run_wsgi_app(application)
-
-
-if __name__ == '__main__':
-    main()

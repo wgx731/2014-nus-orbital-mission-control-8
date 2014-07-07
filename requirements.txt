@@ -7,6 +7,7 @@ coverage==3.7.1
 mockito==0.5.2
 nose==1.3.3
 pytest_gae==0.2.3
+pytest-cov==1.7.0
 NoseGAE==0.2.1
 WebTest==2.0.15
 # for debug
