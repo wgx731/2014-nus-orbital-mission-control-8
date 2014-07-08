@@ -9,6 +9,7 @@ Tutorial for the [NUS Orbital 2014] Mission Control #8 - Orbital Testing and Bey
 + [Link to Presentation](http://goo.gl/nZjg5m)
 + [Link to Tutorial repository](http://goo.gl/qkbMz1)
 + [Link to Tutorial post](http://goo.gl/MqwfDk)
++ [Link to Hangout Air Video](http://youtu.be/TrmJ2aZTCqY?t=4s)
 
 ## Content
 
